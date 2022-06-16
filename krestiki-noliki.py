@@ -10,26 +10,26 @@ def draw_board():
     print("_____________")
 
 
-def take_input(playar_token):
+def take_input(playr_token):
     while True:
-        value = input("Куда поставить: " + playar_token + " ? ")
+        value = input("Куда поставить: " + playr_token + "?")
         if not (value in "123456789"):
-            print("Ошибочный ввод. Поставте.")
+            print("Ошибочный ввод. Попробуйте еще раз.")
             continue
         value = int(value)
         if str(board[value - 1]) in "XO":
-            print("Эта клетка уже занята")
+            print("Это клетка уже занята")
             continue
-        board[value - 1] = playar_token
+        board[value - 1] = playr_token
         break
 
 
 def check_win():
     for each in wins_coord:
-        if (board[each[0] - 1]) == (board[each[0] - 1]) == (board[each[0] - 1]):
-            return board[each[1]-1]
-    else:
-        return False
+        if (board[each[0] - 1]) == (board[each[1] - 1]) == (board[each[2] - 1]):
+            return board[each[1] - 1]
+        else:
+            return False
 
 
 def main():
@@ -44,12 +44,12 @@ def main():
             winner = check_win()
             if winner:
                 draw_board()
-                print(winner, "выйграл!!!")
+                print(winner, "выиграл!!!")
                 break
-            counter += 1
-            if counter > 8:
-                draw_board()
-                print("Ничья")
-                break
+        counter += 1
+        if counter > 8:
+            draw_board()
+            print("Ничья!")
+            break
 
 main()
